@@ -1,5 +1,6 @@
 import React from 'react';
 import Container from 'components/Container/Container';
+import ExchangeRates from 'components/ExchangeRates/ExchangeRates';
 import styles from './Header.module.scss';
 
 const Header = () => {
@@ -8,6 +9,8 @@ const Header = () => {
       <Container>
         <div className={styles.header__content}>
           <img src="https://image.winudf.com/v2/image1/Y29tLmJpbmdodW8uY3VycmVuY3ljb252ZXJ0ZXJfaWNvbl8xNjI4ODI0OTI2XzAyNA/icon.png?w=&fakeurl=1" alt="" className={styles.header__logo} />
+
+          <ExchangeRates />
         </div>
       </Container>
     </div>
