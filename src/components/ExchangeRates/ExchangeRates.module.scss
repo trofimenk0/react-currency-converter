@@ -1,0 +1,25 @@
+.table {
+    text-align: left;
+    width: 340px;
+
+    td,
+    th {
+        padding: 4px 4px 4px 10px;
+    }
+
+    th {
+        color: #1e88e5;
+    }
+
+    &__caption {
+        color: #fff;
+        background-color: #1e88e5;
+        padding: 6px 4px;
+    }
+
+    &__currency {
+        align-items: center;
+        display: flex;
+        gap: 4px;
+    }
+}
