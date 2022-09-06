@@ -1,6 +1,13 @@
 import { axiosFastforexApiInstance, axiosPrivatbankApiInstance } from './axios';
 
 const currencyServices = {
+    convert: async (from, to, amount) => {
+        try {
+            return await axiosFastforexApiInstance.get(`convert?from=${from}&to=${to}&amount=${amount}`);
+        } catch (error) {
+            throw error;
+        }
+    },
     getExchangeRateUAH: async () => {
         try {
             return await axiosPrivatbankApiInstance.get('pubinfo?exchange&json&coursid=11');
