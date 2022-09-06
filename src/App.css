@@ -10,6 +10,7 @@ html {
 }
 
 body {
+  background-color: #fafafa;
   height: 100%;
   margin: 0;
   padding: 0;
@@ -21,4 +22,25 @@ th,
 td {
   border: 1px solid #cfd8dc;
   border-collapse: collapse;
+}
+
+input[type='number'] {
+  -moz-appearance: textfield;
+  border: 1px solid hsl(0, 0%, 80%);
+  border-radius: 4px;
+  height: 36px;
+  outline: none;
+  padding: 0 10px;
+  transition: all 0.3s;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type='number']:hover,
+input[type='number']:focus {
+  border-color: #1e88e5;
 }

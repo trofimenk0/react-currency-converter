@@ -1,0 +1,35 @@
+.wrapper {
+    align-items: flex-start;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: center;
+    padding: 20px 0 0 0;
+    width: 100%;
+}
+
+.title {
+    font-size: 36px;
+    margin: 0;
+    text-align: center;
+    width: 100%;
+}
+
+.form {
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow:  30px 30px 60px #eeeeee,
+             -30px -30px 60px #ffffff;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    padding: 40px;
+    width: 600px;
+
+    &__column {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        gap: 20px;
+    }
+}

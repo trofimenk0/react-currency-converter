@@ -62,13 +62,45 @@ const CurrencyConverter = () => {
     }, []);
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className={styles.from}>
-            <div className={styles.from__column}>
-                <Controller
-                    name="firstCurrencyCode"
-                    control={control}
-                    render={({ field }) => {
-                        return (
+        <div className={styles.wrapper}>
+            <h1 className={styles.title}>Converter</h1>
+
+            <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+                <div className={styles.form__column}>
+                    <Controller
+                        name="firstCurrencyCode"
+                        control={control}
+                        render={({ field }) => {
+                            return (
+                                <Select
+                                    {...field}
+                                    inputRef={field.ref}
+                                    options={currencies}
+                                    value={currencies.find(currency => currency.value === field.value)}
+                                    onChange={(option) => {
+                                        const values = getValues();
+                                        convert(option?.value, values.secondCurrencyCode?.value, values.firstCurrencyValue, 'secondCurrencyValue');
+                                        setValue('firstCurrencyCode', option);
+                                    }}
+                                    placeholder="Select currency"
+                                />
+                            );
+                        }}
+                    />
+
+                    <input type="number" min="0" placeholder="Enter number" {...register("firstCurrencyValue", {
+                        onChange: (event) => {
+                            const values = getValues();
+                            convert(values.firstCurrencyCode?.value, values.secondCurrencyCode?.value, values.firstCurrencyValue, 'secondCurrencyValue');
+                        }
+                    })} />
+                </div>
+
+                <div className={styles.form__column}>
+                    <Controller
+                        name="secondCurrencyCode"
+                        control={control}
+                        render={({ field }) => (
                             <Select
                                 {...field}
                                 inputRef={field.ref}
@@ -76,51 +108,23 @@ const CurrencyConverter = () => {
                                 value={currencies.find(currency => currency.value === field.value)}
                                 onChange={(option) => {
                                     const values = getValues();
-                                    convert(option?.value, values.secondCurrencyCode?.value, values.firstCurrencyValue, 'secondCurrencyValue');
-                                    setValue('firstCurrencyCode', option);
+                                    convert(option?.value, values.firstCurrencyCode?.value, values.secondCurrencyValue, 'firstCurrencyValue');
+                                    setValue('secondCurrencyCode', option);
                                 }}
+                                placeholder="Select currency"
                             />
-                        );
-                    }}
-                />
+                        )}
+                    />
 
-                <input type="number" min="0" placeholder="firstCurrencyValue" {...register("firstCurrencyValue", {
-                    onChange: (event) => {
-                        const values = getValues();
-                        convert(values.firstCurrencyCode?.value, values.secondCurrencyCode?.value, values.firstCurrencyValue, 'secondCurrencyValue');
-                    }
-                })} />
-            </div>
-
-            <div className={styles.from__column}>
-                <Controller
-                    name="secondCurrencyCode"
-                    control={control}
-                    render={({ field }) => (
-                        <Select
-                            {...field}
-                            inputRef={field.ref}
-                            options={currencies}
-                            value={currencies.find(currency => currency.value === field.value)}
-                            onChange={(option) => {
-                                const values = getValues();
-                                convert(option?.value, values.firstCurrencyCode?.value, values.secondCurrencyValue, 'firstCurrencyValue');
-                                setValue('secondCurrencyCode', option);
-                            }}
-                        />
-                    )}
-                />
-
-                <input type="number" min="0" placeholder="secondCurrencyValue" {...register("secondCurrencyValue", {
-                    onChange: (event) => {
-                        const values = getValues();
-                        convert(values.secondCurrencyCode?.value, values.firstCurrencyCode?.value, values.secondCurrencyValue, 'firstCurrencyValue');
-                    }
-                })} />
-            </div>
-
-            <input type="submit" />
-        </form>
+                    <input type="number" min="0" placeholder="Enter number" {...register("secondCurrencyValue", {
+                        onChange: (event) => {
+                            const values = getValues();
+                            convert(values.secondCurrencyCode?.value, values.firstCurrencyCode?.value, values.secondCurrencyValue, 'firstCurrencyValue');
+                        }
+                    })} />
+                </div>
+            </form>
+        </div>
     );
 };
 
