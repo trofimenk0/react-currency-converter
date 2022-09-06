@@ -15,3 +15,10 @@ body {
   padding: 0;
   width: 100%;
 }
+
+table,
+th,
+td {
+  border: 1px solid #cfd8dc;
+  border-collapse: collapse;
+}
